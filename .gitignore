@@ -1,0 +1,13 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Runtime data: conversation log, memory, server logs, Google OAuth files
+data/
+workspace/
+
+.env
+.vscode/
+.idea/

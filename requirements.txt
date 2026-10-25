@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+ollama
+edge-tts
+httpx
+beautifulsoup4
+psutil
+google-api-python-client
+google-auth-oauthlib

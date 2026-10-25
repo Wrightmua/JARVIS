@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>J.A.R.V.I.S.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rajdhani:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="hud.css">
+</head>
+<body data-state="offline">
+<div class="grid-bg"></div>
+
+<header>
+  <div class="brand">J.A.R.V.I.S.</div>
+  <div class="clock"><span id="time">--:--</span><span id="date"></span></div>
+  <div class="link"><span class="dot" id="linkDot"></span><span id="linkText">CONNECTING</span></div>
+</header>
+
+<main>
+  <aside class="panel left">
+    <h2>SYSTEMS</h2>
+    <div class="gauge" data-key="cpu"><label>CPU</label><div class="bar"><i></i></div><b>--</b></div>
+    <div class="gauge" data-key="ram"><label>MEMORY</label><div class="bar"><i></i></div><b>--</b></div>
+    <div class="gauge" data-key="disk"><label>DISK</label><div class="bar"><i></i></div><b>--</b></div>
+    <div class="gauge" data-key="battery"><label>POWER</label><div class="bar"><i></i></div><b>--</b></div>
+    <div class="kv"><span>UPTIME</span><b id="uptime">--</b></div>
+    <h2>CORE</h2>
+    <div class="kv"><span>MODEL</span><b id="model">--</b></div>
+    <div class="kv"><span>MODE</span>
+      <select id="mode">
+        <option value="wake">WAKE WORD</option>
+        <option value="open">ALWAYS LISTEN</option>
+        <option value="push">PUSH TO TALK</option>
+      </select>
+    </div>
+    <div class="kv"><span>VOICE</span>
+      <select id="voiceOut">
+        <option value="neural">NEURAL</option>
+        <option value="browser">BROWSER</option>
+        <option value="mute">MUTED</option>
+      </select>
+    </div>
+    <button class="ghost" id="resetBtn">CLEAR SHORT-TERM MEMORY</button>
+  </aside>
+
+  <section class="center">
+    <div class="reactor" id="reactor" title="Click to talk / interrupt">
+      <svg viewBox="0 0 400 400">
+        <defs>
+          <radialGradient id="core" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" style="stop-color:#fff"/>
+            <stop offset="35%" style="stop-color:var(--glow)"/>
+            <stop offset="100%" style="stop-color:var(--glow);stop-opacity:0"/>
+          </radialGradient>
+        </defs>
+        <circle class="ring r1" cx="200" cy="200" r="185"/>
+        <circle class="ring r2" cx="200" cy="200" r="160"/>
+        <circle class="ring r3" cx="200" cy="200" r="132"/>
+        <g class="ticks">
+          <circle cx="200" cy="200" r="110"/>
+        </g>
+        <circle class="ring r4" cx="200" cy="200" r="88"/>
+        <circle class="core" id="coreDisc" cx="200" cy="200" r="62" fill="url(#core)"/>
+      </svg>
+      <div class="state-label" id="stateLabel">OFFLINE</div>
+    </div>
+    <div class="interim" id="interim"></div>
+
+    <div class="transcript" id="transcript"></div>
+
+    <form class="input" id="form" autocomplete="off">
+      <button type="button" class="mic" id="micBtn" title="Microphone">MIC OFF</button>
+      <input id="text" placeholder="Type a command, or say “Jarvis…”">
+      <button type="submit">SEND</button>
+    </form>
+  </section>
+
+  <aside class="panel right">
+    <h2>ACTIVITY</h2>
+    <ol class="activity" id="activity"></ol>
+  </aside>
+</main>
+
+<div class="modal hidden" id="confirm">
+  <div class="card">
+    <h3>AUTHORISATION REQUIRED</h3>
+    <pre id="confirmMsg"></pre>
+    <p class="hint">Say “yes” or “no”, or click.</p>
+    <div class="row">
+      <button id="denyBtn" class="ghost">DENY</button>
+      <button id="allowBtn">AUTHORISE</button>
+    </div>
+  </div>
+</div>
+
+<script src="hud.js"></script>
+</body>
+</html>
